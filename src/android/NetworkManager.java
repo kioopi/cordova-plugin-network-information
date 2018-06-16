@@ -130,7 +130,9 @@ public class NetworkManager extends CordovaPlugin {
             NetworkInfo info = sockMan.getActiveNetworkInfo();
             String connectionType = "";
             try {
-                connectionType = this.getConnectionInfo(info).get("type").toString();
+                JSONObject thisInfo = this.getConnectionInfo(info);
+                connectionType = thisInfo.get("type").toString();
+                lastInfo = thisInfo;
             } catch (JSONException e) {
                 LOG.d(LOG_TAG, e.getLocalizedMessage());
             }
